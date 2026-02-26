@@ -1,0 +1,822 @@
+
+/* Reset e configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0a0a0a;
+    color: #f0f0f0;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+
+/* Navbar */
+.navbar {
+    background-color: rgba(10, 10, 10, 0.95);
+    padding: 20px 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1030;
+}
+
+.navbar.scrolled {
+    padding: 15px 0;
+    background-color: rgba(10, 10, 10, 0.98);
+}
+
+.navbar-brand .logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.navbar-brand .logo-highlight {
+    color: #d4af37;
+}
+
+.nav-link {
+    color: #f0f0f0 !important;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #d4af37 !important;
+}
+
+.nav-link.active {
+    color: #d4af37 !important;
+    font-weight: 600;
+}
+
+.btn-reserva {
+    background: linear-gradient(to right, #d4af37, #b8941f);
+    color: #0a0a0a;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-reserva:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    color: #0a0a0a;
+}
+
+/* Carousel */
+.carousel {
+    margin-top: 80px;
+}
+
+.carousel-image {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.carro1 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+}
+
+.carro2 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+}
+
+.carro3 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2025&q=80');
+}
+
+.carousel-caption {
+    bottom: 30%;
+    text-align: left;
+    max-width: 650px;
+    margin-left: 10%;
+}
+
+.carousel-caption h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #ddd;
+}
+
+.btn-carousel {
+    background-color: #d4af37;
+    color: #0a0a0a;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s;
+}
+
+.btn-carousel:hover {
+    background-color: #b8941f;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: #0a0a0a;
+}
+
+/* Seção de Destaque */
+.destaque {
+    padding: 80px 0;
+    background-color: #111;
+}
+
+.destaque-item {
+    padding: 30px 20px;
+    transition: transform 0.3s;
+}
+
+.destaque-item:hover {
+    transform: translateY(-10px);
+}
+
+.destaque-item i {
+    font-size: 3rem;
+    color: #d4af37;
+    margin-bottom: 20px;
+}
+
+.destaque-item h4 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.destaque-item p {
+    color: #aaa;
+    font-size: 1rem;
+}
+
+/* Seção Frota */
+.frota {
+    padding: 100px 0;
+    background-color: #0a0a0a;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 2.8rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.section-title p {
+    color: #aaa;
+    font-size: 1.1rem;
+}
+
+.car-card {
+    background-color: #151515;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.car-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+}
+
+.car-img {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+}
+
+.img1 {
+    background-image: url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+}
+
+.img2 {
+    background-image: url('https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2025&q=80');
+}
+
+.img3 {
+    background-image: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80');
+}
+
+.car-info {
+    padding: 25px;
+}
+
+.car-info h4 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.car-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.car-details span i {
+    color: #d4af37;
+    margin-right: 5px;
+}
+
+.car-info p {
+    color: #aaa;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.car-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #d4af37;
+}
+
+.price span {
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.btn-reserve {
+    background-color: #d4af37;
+    color: #0a0a0a;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s;
+}
+
+.btn-reserve:hover {
+    background-color: #b8941f;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    color: #0a0a0a;
+}
+
+.btn-ver-mais {
+    background-color: transparent;
+    color: #d4af37;
+    padding: 12px 35px;
+    border-radius: 30px;
+    font-weight: 600;
+    border: 2px solid #d4af37;
+    transition: all 0.3s;
+}
+
+.btn-ver-mais:hover {
+    background-color: #d4af37;
+    color: #0a0a0a;
+}
+
+/* Seção de Reserva */
+.reserva {
+    padding: 100px 0;
+    background-color: #111;
+}
+
+.reserva-box {
+    background-color: #151515;
+    border-radius: 20px;
+    padding: 60px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.reserva h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.reserva p {
+    color: #aaa;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.destaque-reserva {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.destaque-reserva i {
+    color: #d4af37;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.destaque-reserva span {
+    color: #ddd;
+}
+
+.reserva-form {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.form-label {
+    color: #ddd;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+    background-color: #222;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 12px 15px;
+    border-radius: 8px;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #222;
+    border-color: #d4af37;
+    color: #fff;
+    box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+}
+
+.form-control::placeholder {
+    color: #666;
+}
+
+.btn-reserva-form {
+    background: linear-gradient(to right, #d4af37, #b8941f);
+    color: #0a0a0a;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.btn-reserva-form:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    color: #0a0a0a;
+}
+
+/* Footer */
+footer {
+    background-color: #0a0a0a;
+    padding: 80px 0 30px;
+    border-top: 1px solid #222;
+}
+
+.footer-col h4, .footer-col h5 {
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.footer-col h4 {
+    font-size: 1.8rem;
+}
+
+.footer-col h5 {
+    font-size: 1.2rem;
+}
+
+.footer-col p {
+    color: #aaa;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    color: #aaa;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-col ul li i {
+    color: #d4af37;
+    margin-right: 10px;
+    width: 20px;
+}
+
+.footer-col a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-col a:hover {
+    color: #d4af37;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #222;
+    border-radius: 50%;
+    color: #d4af37;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.social-icons a:hover {
+    background-color: #d4af37;
+    color: #0a0a0a;
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.footer-bottom hr {
+    border-color: #333;
+    margin-bottom: 30px;
+}
+
+/* Botão do WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: scale(1.1);
+    color: #fff;
+}
+
+/* Rola gem suave */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .carousel-caption h2 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .carousel {
+        margin-top: 70px;
+    }
+    
+    .carousel-caption {
+        bottom: 25%;
+        margin-left: 5%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 2.8rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 1.1rem;
+    }
+    
+    .reserva-box {
+        padding: 40px;
+    }
+    
+    .navbar-brand .logo-text {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .navbar-brand .logo-text {
+        font-size: 1.4rem;
+    }
+    
+    .carousel-image {
+        height: 80vh;
+    }
+    
+    .carousel-caption {
+        bottom: 20%;
+        text-align: center;
+        margin-left: 0;
+        padding: 0 20px;
+        max-width: 100%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 2.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 1rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2.2rem;
+    }
+    
+    .section-title p {
+        font-size: 1rem;
+    }
+    
+    .reserva-box {
+        padding: 30px 20px;
+    }
+    
+    .reserva h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .destaque-item {
+        margin-bottom: 30px;
+    }
+    
+    .footer-col {
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand .logo-text {
+        font-size: 1.2rem;
+    }
+    
+    .btn-reserva {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .carousel-image {
+        height: 70vh;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-carousel {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .destaque {
+        padding: 50px 0;
+    }
+    
+    .frota {
+        padding: 60px 0;
+    }
+    
+    .section-title h2 {
+        font-size: 1.8rem;
+    }
+    
+    .car-info h4 {
+        font-size: 1.3rem;
+    }
+    
+    .price {
+        font-size: 1.5rem;
+    }
+    
+    .reserva {
+        padding: 60px 0;
+    }
+    
+    .reserva h2 {
+        font-size: 1.8rem;
+    }
+    
+    .reserva-form {
+        padding: 20px;
+    }
+    
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.car-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.destaque-item {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b8941f;
+}
+
+/* Estilo para mensagens de sucesso/erro */
+.alert-success {
+    background-color: rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
+    color: #d4af37;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.2);
+    border-color: #dc3545;
+    color: #dc3545;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Loading spinner */
+.spinner {
+    border: 3px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50%;
+    border-top: 3px solid #d4af37;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Link ativo no menu */
+.navbar-nav .nav-link.active {
+    color: #d4af37 !important;
+    position: relative;
+}
+
+.navbar-nav .nav-link.active:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background-color: #d4af37;
+}
+
+/* Ajuste para imagens de fundo em telas pequenas */
+@media (max-width: 768px) {
+    .carro1, .carro2, .carro3 {
+        background-position: center center;
+    }
+    
+    .img1, .img2, .img3 {
+        background-position: center center;
+    }
+}
+
+/* Melhorias para dispositivos touch */
+@media (hover: none) {
+    .car-card:hover {
+        transform: none;
+    }
+    
+    .btn-reserva:hover,
+    .btn-carousel:hover,
+    .btn-reserve:hover,
+    .btn-ver-mais:hover,
+    .btn-reserva-form:hover {
+        transform: none;
+    }
+}
+
+/* Suporte para modo escuro do navegador */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0a0a0a;
+    }
+}
+
+/* Estilo para links */
+a {
+    text-decoration: none;
+}
+
+/* Container responsivo */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Ajuste para Bootstrap */
+.modal-content {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.modal-header {
+    border-bottom-color: #333;
+}
+
+.modal-footer {
+    border-top-color: #333;
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+

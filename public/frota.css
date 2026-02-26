@@ -1,0 +1,502 @@
+  /* ===== PÁGINA DE FROTA ===== */
+        
+        /* Navbar */
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1030;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            background-color: rgba(10, 10, 10, 0.98);
+        }
+
+        .navbar-brand .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .navbar-brand .logo-highlight {
+            color: #d4af37;
+        }
+
+        .nav-link {
+            color: #f0f0f0 !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #d4af37 !important;
+        }
+
+        .nav-link.active {
+            color: #d4af37 !important;
+            font-weight: 600;
+        }
+
+        .btn-reserva {
+            background: linear-gradient(to right, #d4af37, #b8941f);
+            color: #0a0a0a;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-reserva:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            color: #0a0a0a;
+        }
+
+        /* Hero Banner da Frota */
+        .frota-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .frota-hero-content h1 {
+            font-size: 4rem;
+            color: #d4af37;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .frota-hero-content p {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        /* ===== SEÇÃO DE MARCAS EM CARROSSEL ===== */
+        .marcas-section {
+            padding: 80px 0;
+            background: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-title p {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+
+        /* Carrossel de Marcas */
+        .marcas-carousel {
+            padding: 20px 0 40px;
+            position: relative;
+        }
+
+        .marca-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* ===== ESTILO DOS AVATARES COM LOGOS - CÍRCULO PERFEITO ===== */
+        .marca-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marca-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: all 0.4s ease;
+        }
+
+        .marca-card:hover .marca-avatar {
+            border-color: #d4af37;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .marca-card:hover .marca-avatar img {
+            transform: scale(1.1);
+        }
+
+        .marca-card h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            transition: color 0.3s;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .marca-card:hover h3 {
+            color: #d4af37;
+        }
+
+        .marca-card span {
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .marca-card:hover span {
+            color: #d4af37;
+        }
+
+        /* Setas do Carrossel */
+        .carrossel-container {
+            position: relative;
+            padding: 0 50px;
+        }
+
+        .carrossel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: #151515;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .carrossel-control:hover {
+            background: #d4af37;
+            border-color: #d4af37;
+            color: #0a0a0a;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carrossel-control.prev {
+            left: 0;
+        }
+
+        .carrossel-control.next {
+            right: 0;
+        }
+
+        .carrossel-wrapper {
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .carrossel-slides {
+            display: flex;
+            transition: transform 0.8s ease;
+        }
+
+        .carrossel-slide {
+            flex: 0 0 calc(100% / 6);
+            padding: 15px;
+        }
+
+        /* Indicadores */
+        .carrossel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #333;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: #d4af37;
+            transform: scale(1.2);
+        }
+
+        .indicator:hover {
+            background: #d4af37;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            padding: 80px 0 30px;
+            border-top: 1px solid #222;
+            width: 100%;
+            clear: both;
+        }
+
+        .footer-col h4, .footer-col h5 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-col h4 {
+            font-size: 1.8rem;
+        }
+
+        .footer-col h5 {
+            font-size: 1.2rem;
+        }
+
+        .footer-col p {
+            color: #aaa;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            color: #aaa;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-col ul li i {
+            color: #d4af37;
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-col a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #d4af37;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #222;
+            border-radius: 50%;
+            color: #d4af37;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: #d4af37;
+            color: #0a0a0a;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom hr {
+            border-color: #333;
+            margin-bottom: 30px;
+            opacity: 0.5;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 1200px) {
+            .carrossel-slide {
+                flex: 0 0 calc(100% / 5);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .frota-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .carrossel-slide {
+                flex: 0 0 calc(100% / 4);
+            }
+            
+            .marca-avatar {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .frota-hero {
+                height: 40vh;
+                margin-top: 70px;
+            }
+            
+            .frota-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .carrossel-slide {
+                flex: 0 0 calc(100% / 3);
+            }
+            
+            .marca-avatar {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .marca-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .carrossel-container {
+                padding: 0 30px;
+            }
+            
+            .footer-col {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            
+            .footer-col ul li {
+                justify-content: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .frota-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .carrossel-slide {
+                flex: 0 0 calc(100% / 2);
+            }
+            
+            .marca-avatar {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .carrossel-control {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.8rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            footer {
+                padding: 40px 0 20px;
+            }
+            
+            .footer-col h4 {
+                font-size: 1.5rem;
+            }
+        }

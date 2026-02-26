@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Testcontroller;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,5 +28,21 @@ Route::get('/visualiza_carro/{id_carro}',[TestController::class,'visualizar_carr
 Route::get('/alterar_carro/{id_carro}',[Testcontroller::class,'mostra_carro']);
 
 Route::get('/deleta_carro/{id_carro}',[Testcontroller::class,'deleta_carro']);
+
+Route::get('/frota', function () {
+    return view('frota');
+})->name('frota');
+
+Route::get('/servicos', function () {
+    return view('servicos');
+})->name('servicos');
+
+Route::get('/sobre', function () {
+    return view('sobre');
+})->name('sobre');
+
+Route::get('/contato', function () {
+    return view('contato');
+})->name('contato');
 
 require __DIR__.'/auth.php';

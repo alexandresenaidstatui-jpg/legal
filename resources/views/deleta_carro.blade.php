@@ -329,7 +329,6 @@
     <script>
         $(document).ready(function(){
 
-    alert("TO FUNFANDO");
 
 
     $("#meu").click(function(){
@@ -353,9 +352,8 @@
              },
             success: function (res) {
 
-                alert("deletado cria")
-                console.log(res);
-                window.location.href = "/formulario"
+
+                window.location.href = "/"
             },
 
         });

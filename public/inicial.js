@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-    alert("TO FUNFANDO");
 
 
     $("#meu").click(function(){
@@ -30,7 +29,7 @@ $(document).ready(function(){
 
             success: function (res) {
 
-                alert("salvado cria")
+
                 console.log(res);
             },
 

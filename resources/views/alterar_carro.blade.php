@@ -290,7 +290,6 @@
                 <label for="tipo_gasolina" class="required">Tipo de Combustível</label>
                 <div class="input-container">
                     <select value="{{$carro->tipo_gasolina}}"  id="tipo_gasolina">
-                        <option value="">Selecione...</option>
                         <option value="gasolina">Gasolina</option>
                         <option value="etanol">Etanol</option>
                         <option value="flex">Flex (Gasolina/Etanol)</option>
@@ -329,7 +328,7 @@
     <script>
         $(document).ready(function(){
 
-    alert("TO FUNFANDO");
+
 
 
     $("#meu").click(function(){
@@ -352,9 +351,7 @@
 
              },
             success: function (res) {
-
-                alert("alterado cria")
-                console.log(res);
+                     console.log(res);
             },
 
         });
