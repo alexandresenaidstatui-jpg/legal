@@ -30,7 +30,8 @@ class Testcontroller extends Controller
     }
 
     public function salva_carro (Request $request)
-    {$request ->validate ([
+    {
+        $request->validate ([
 
     'modelo' => 'required',
     'ano' => 'required',
@@ -68,7 +69,7 @@ class Testcontroller extends Controller
         return response()->json($data,200);
 
     } catch (\Throwable $th) {
-        //throw $th;
+        throw $th;
     }
 
 

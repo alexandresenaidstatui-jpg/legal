@@ -21,14 +21,8 @@ $(document).ready(function(){
                 fabricante: $("#fabricante").val()
 
              },
-
-
-
-
-
-
             success: function (res) {
-
+                console.log('funcionei')
 
                 console.log(res);
             },

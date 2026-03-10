@@ -6,7 +6,7 @@
     <title>Cadastro de Carro - XLCars</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="inicial.js"></script>
+
     <style>
         * {
             margin: 0;
@@ -231,109 +231,104 @@
                 <i class="fas fa-crown logo-icon"></i>
                 <div class="logo-text">XLCARS</div>
             </div>
-            <h1>Cadastro de Veículo</h1>
+            <h1>Cadastrar usuario</h1>
         </div>
         
         <div class="form-container">
             <i class="fas fa-car car-icon"></i>
             
             <div class="form-group">
-                <label for="modelo" class="required">Modelo</label>
+                <label for="modelo" class="required">Nome</label>
                 <div class="input-container">
-                    <input type="text" id="modelo" placeholder="Ex: Ferrari F8 Tributo">
+                    <input type="text" id="nome" placeholder="Ex: Fulano da Silva Santos">
                     <i class="fas fa-car input-icon"></i>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="dono" class="required">Proprietário</label>
+                <label for="dono" class="required">Email</label>
                 <div class="input-container">
-                    <input type="text" id="dono" placeholder="Nome do proprietário">
+                    <input type="text" id="email" placeholder="Nome do proprietário">
                     <i class="fas fa-user input-icon"></i>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="email" class="required">E-mail</label>
+                <label for="email" class="required">Senha</label>
                 <div class="input-container">
-                    <input type="email" id="email" placeholder="exemplo@email.com">
+                    <input type="email" id="senha" placeholder="exemplo@email.com">
                     <i class="fas fa-envelope input-icon"></i>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="placa" class="required">Placa</label>
+                <label for="placa" class="required">Telefone</label>
                 <div class="input-container">
-                    <input type="text" id="placa" placeholder="AAA-0000">
+                    <input type="text" id="telefone" placeholder="5511997526625">
                     <i class="fas fa-id-card input-icon"></i>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="cor" class="required">Cor</label>
+                <label for="valor" class="required">Ano de Nascimento</label>
                 <div class="input-container">
-                    <input type="text" id="cor" placeholder="Ex: Vermelho">
-                    <i class="fas fa-palette input-icon"></i>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="valor" class="required">Valor (R$)</label>
-                <div class="input-container">
-                    <input type="number" id="valor" placeholder="0,00" min="0" step="0.01">
+                    <input type="date" id="nascimento"  >
                     <i class="fas fa-dollar-sign input-icon"></i>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="potencia" class="required">Potência (cavalos)</label>
+                <label for="potencia" class="required">Genero</label>
                 <div class="input-container">
-                    <input type="number" id="potencia" placeholder="Ex: 300">
+                    <input type="text" id="genero" placeholder="Ex: Masculino">
                     <i class="fas fa-bolt input-icon"></i>
                 </div>
             </div>
-            
-            <div class="form-group">
-                <label for="tipo_gasolina" class="required">Tipo de Combustível</label>
-                <div class="input-container">
-                    <select id="tipo_gasolina">
-                        <option value="">Selecione...</option>
-                        <option value="1">Gasolina</option>
-                        <option value="2">Etanol</option>
-                        <option value="3">Flex (Gasolina/Etanol)</option>
-                        <option value="4">Diesel</option>
-                        <option value="5">Elétrico</option>
-                        <option value="6">Híbrido</option>
-                    </select>
-                    <i class="fas fa-gas-pump input-icon"></i>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="potencia" class="required">Fabricante</label>
-                <div class="input-container">
-                    <input type="text" id="fabricante" placeholder="Ford">
-                    <i class="fas fa-bolt input-icon"></i>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="ano" class="required">Ano</label>
-                <div class="input-container">
-                    <input type="number" id="ano" placeholder="Ex: 2023" min="1900" max="2026">
-                    <i class="fas fa-calendar input-icon"></i>
-                </div>
-            </div>
-                            
-            
+                                         
             <div class="buttons">
-                <button type="button" class="btn-submit" id="meu">
+                <button type="button" class="btn-submit" id="meu2">
                     <i class="fas fa-save btn-icon"></i> Cadastrar Veículo
                 </button>
             </div>
         </div>
     </div>
-    
+    <script>$(document).ready(function(){
+
+
+
+    $("#meu2").click(function(){
+
+        $.ajax({
+            url: "../api/cadastrar_usuario" ,
+            method: "POST",
+            data: { 
+
+                nome : $("#nome").val() ,
+                email: $("#email").val(),
+                senha: $("#senha").val(),
+                telefone: $("#telefone").val(),
+                nascimento : $("#nascimento").val() ,
+                genero: $("#genero").val(),
+             },
+
+
+
+
+
+
+            success: function (res) {
+
+
+                console.log(res);
+            },
+
+        });
+
+    });
+
+
+
+});</script>
 
 </body>
 </html>

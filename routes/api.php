@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Testcontroller;
+use App\http\Controllers\UsuarioController;
+
+
+Route::get('/login_novo',[UsuarioController::class,'login']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -26,3 +30,8 @@ Route::get('/todos_carros',[Testcontroller::class,'todos_carros']);
 Route::put('/alterar_carro',[Testcontroller::class,'alterar_carro']);
 
 Route::delete('/deletar_carro',[Testcontroller::class,'deletar_carro']);
+
+Route::post('/cadastrar_usuario',[UsuarioController::class,'cadastra_usuario']);
+
+
+
