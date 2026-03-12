@@ -7,8 +7,7 @@ use App\Http\Controllers\UsuarioController;
 
 Route::get('/', function () {
     return view('home');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+});
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -35,13 +34,17 @@ Route::get('/frota', function () {
     return view('frota');
 })->name('frota');
 
+Route::get('/perfil', function () {
+    return view('perfil');
+})->name('perfil');
+
+Route::get('/servico', function () {
+    return view('servico');
+})->name('servico');
+
 Route::get('/servicos', function () {
     return view('servicos');
 })->name('servicos');
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
 
 Route::get('/sobre', function () {
     return view('sobre');

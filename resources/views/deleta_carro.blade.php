@@ -328,7 +328,7 @@
     </div>
     <script>
         $(document).ready(function(){
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 
     $("#meu").click(function(){
@@ -337,6 +337,7 @@
             url: "../api/deletar_carro" ,
             method: "DELETE",
             data: { 
+                token:token,
                 id_carro :$("#id_carro").val(),
                 modelo : $("#modelo").val() ,
                 email: $("#email").val(),

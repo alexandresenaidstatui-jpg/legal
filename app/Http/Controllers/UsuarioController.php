@@ -53,7 +53,7 @@ class UsuarioController extends Controller
      ]);
 
      $usuario = Usuario::where('email', $request->email)
-     ->where('senha','=',md5($request->senha))->get()->firts();
+     ->where('senha','=',md5($request->senha))->get()->first();
 
     if($usuario){
         toukeuser::where('user_id',$usuario->id)->delete();
@@ -69,7 +69,7 @@ class UsuarioController extends Controller
         $data = [
         'erro'=> 'n',
         'msg'=> 'Usuario Logado!',
-        'token' => $token->$token
+        'token' => $token->token
         ];
 
         return response()->json($data, 200);
@@ -84,5 +84,54 @@ class UsuarioController extends Controller
 
 
     }
+    }
+    public function alterar_usuario(Request $request){
+    
+    {$request ->validate ([
+
+    'modelo' => 'required',
+    'ano' => 'required',
+    'cor' => 'required',
+    'placa' => 'required',
+    'dono' => 'required',
+    'valor' => 'required',
+    'potencia' => 'required',
+    'fabricante' => 'required',
+    'tipo_gasolina' => 'required',
+    'id_carro' => 'required'
+    
+
+    ]);
+
+    try {
+
+
+
+        $carro = CarroModel::find($request->id_carro);
+        $carro->modelo = $request->modelo;
+        $carro->ano = $request->ano;
+        $carro->cor = $request->cor;
+        $carro->placa = $request->placa;
+        $carro->dono = $request->dono;
+        $carro->valor = $request->valor;
+        $carro->potencia = $request->potencia;
+        $carro->fabricante = $request->fabricante;
+        $carro->tipo_gasolina = $request->tipo_gasolina;
+        $carro->save();
+
+
+        $data = [
+            "erro" => 'n',
+            'carro' => $carro,
+        ];
+
+        return response()->json($data,200);
+
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+
+    }
+
     }
 }
