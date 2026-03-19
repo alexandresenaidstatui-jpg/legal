@@ -373,6 +373,7 @@
                 senha: $("#senha").val(),
 
             },success: function(response){
+                console.log(response)
                 if(response['erro'] =='n'){
                     console.log(response)
                     
@@ -381,7 +382,7 @@
                     
 
                     setTimeout(function(){
-                       // window.location.href="/"; 
+                        window.location.href="/"; 
                     },2000);
                     
                 }else{
@@ -391,7 +392,7 @@
 
             error: function (xhr) {
 
-                console.log("Erro ao consultar status Pix:", xhr.responseText);
+                
             }
         });
     });

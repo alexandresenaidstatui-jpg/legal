@@ -474,6 +474,7 @@
         .history-title {
             color: #f0f0f0;
             font-weight: 600;
+            
             margin-bottom: 5px;
         }
         
@@ -601,10 +602,7 @@
                 <!-- Capa e Avatar -->
                 <div class="profile-cover">
                     <div class="profile-avatar" id="profileAvatar">
-                        <div class="avatar-placeholder">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <div class="edit-avatar" data-bs-toggle="modal" data-bs-target="#avatarModal">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSszTevDZL90v_9smokdnXaGHKa9oSzwTww2g&s" style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid #D4AF37; object-fit: cover; object-position: center 20%;">
                             <i class="fas fa-camera"></i>
                         </div>
                     </div>
@@ -612,8 +610,8 @@
                 
                 <!-- Informações do usuário -->
                 <div class="user-info">
-                    <h2 class="user-name" id="userNameDisplay">João Silva</h2>
-                    <div class="user-email" id="userEmailDisplay">joao.silva@email.com</div>
+                    <h2 class="user-name" value="{{$usuario->nome}}" id="userNameDisplay">{{$usuario->nome}}</h2>
+                    <div class="user-email" id="userEmailDisplay">{{$usuario->email}}</div>
                     <div class="user-badge">
                         <i class="fas fa-crown me-1"></i> Membro Premium
                     </div>
@@ -633,7 +631,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-user"></i>
                                 </span>
-                                <input type="text" class="form-control" id="profileName" value="João Silva">
+                                <input type="text" class="form-control" id="profileName" value="{{$usuario->nome}}">
                             </div>
                         </div>
                         
@@ -643,7 +641,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-envelope"></i>
                                 </span>
-                                <input type="email" class="form-control" id="profileEmail" value="joao.silva@email.com">
+                                <input type="email" class="form-control" id="profileEmail" value="{{$usuario->email}}">
                             </div>
                         </div>
                         
@@ -653,7 +651,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-phone"></i>
                                 </span>
-                                <input type="text" class="form-control" id="profilePhone" value="(11) 99999-9999">
+                                <input type="text" class="form-control" id="profilePhone" value="{{$usuario->telefone}}">
                             </div>
                         </div>
                     </div>
@@ -669,7 +667,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-calendar"></i>
                                 </span>
-                                <input type="date" class="form-control" id="profileBirth" value="1990-01-01">
+                                <input type="date" class="form-control" id="profileBirth" value="{{$usuario->nascimento}}">
                             </div>
                         </div>
                         
@@ -679,12 +677,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-venus-mars"></i>
                                 </span>
-                                <select class="form-select" id="profileGender">
-                                    <option value="masculino" selected>Masculino</option>
-                                    <option value="feminino">Feminino</option>
-                                    <option value="outro">Outro</option>
-                                    <option value="nao_dizer">Prefiro não dizer</option>
-                                </select>
+                                <input type="text" class="form-control" id="profileBirth" value="{{$usuario->genero}}">
                             </div>
                         </div>
                         
@@ -694,7 +687,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </span>
-                                <input type="text" class="form-control" id="profileLocation" value="São Paulo, SP">
+                                <input type="text" class="form-control" id="profileLocation" value="{{$usuario->cidade}}">
                             </div>
                         </div>
                     </div>
@@ -811,9 +804,9 @@
                 <div class="modal-body">
                     <div class="text-center mb-4">
                         <div class="profile-avatar-preview mb-3">
-                            <i class="fas fa-user-circle" style="font-size: 100px; color: #D4AF37;"></i>
-
-                    
+                            <img src="https://i.imgflip.com/4/2gn9mj.jpg" style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid #D4AF37; object-fit: cover;">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer border-secondary">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -865,23 +858,20 @@
     alert("TO FUNFANDO");
 
 
-    $("#meu").click(function(){
+
 
         $.ajax({
-            url: "../api/alterar_usuario" ,
-            method: "PUT",
+            url: "../api/perfil" ,
+            method: "get",
             data: { 
-                id_carro :$("#id_carro").val(),
-                modelo : $("#modelo").val() ,
+
+                nome :$("#nome").text(),
+                senha : $("#senha").val() ,
                 email: $("#email").val(),
-                cor: $("#cor").val(),
-                ano: $("#ano").val(),
-                placa : $("#placa").val() ,
-                dono: $("#dono").val(),
-                valor: $("#valor").val(),
-                potencia: $("#potencia").val(),
-                tipo_gasolina: $("#tipo_gasolina").val(),
-                fabricante: $("#fabricante").val()
+                telefone: $("#telefone").val(),
+                nascimento: $("#mascimento").val(),
+                genero : $("#genero").val() ,
+                token:token
 
              },
             success: function (res) {
@@ -892,7 +882,7 @@
 
         });
 
-    });
+   
 
 
 

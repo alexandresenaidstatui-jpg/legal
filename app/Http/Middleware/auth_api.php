@@ -21,7 +21,7 @@ class auth_api
      {
         if($request->has('token')){
             $hoje = Carbon::now();
-            $token = toukeuser::where('token', $request->token)->where('valido_ate','>=',$hoje)->get()->first();
+            $token = toukeuser::where('token', $request->token)->get()->first();
             if($token){
                 $usuario = Usuario::find($token->user_id);
                 $request->usuario = $usuario;

@@ -85,6 +85,15 @@ class UsuarioController extends Controller
 
     }
     }
+
+        public function mostra_perfil($id){
+
+        $usuario = Usuario::find($id);
+
+        return view('perfil')->with('usuario',$usuario);
+
+    }
+
     public function alterar_usuario(Request $request){
     
     {$request ->validate ([

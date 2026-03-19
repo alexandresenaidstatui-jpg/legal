@@ -125,7 +125,6 @@ class Testcontroller extends Controller
     }
 
     public function alterar_carro(Request $request){
-    
     {$request ->validate ([
 
     'modelo' => 'required',

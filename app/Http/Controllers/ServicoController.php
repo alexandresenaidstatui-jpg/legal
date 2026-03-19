@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Servico;
+use App\Models\Usuario;
 
-class ServicoCotroller extends Controller
+class ServicoController extends Controller
 {
     public function salva_servico (Request $request)
     {
@@ -47,10 +48,21 @@ class ServicoCotroller extends Controller
     }
     }
 
-    public function altera_servico (Request $request)
-    {
-        $request->validate ([
+        public function mostra_servico($id_servico){
 
+        $servico = Servico::find($id_servico);
+
+        return view('alterar_servico')->with('servico',$servico);
+
+    }
+
+    public function altera_servico (Request $request){
+
+       
+            
+        
+        $request->validate ([
+       
         'nome' => 'required',
         'contato' => 'required',
         'tipo' => 'required',
@@ -60,11 +72,12 @@ class ServicoCotroller extends Controller
         
 
     ]);
-
+        
     try {
-   
+        
         $usuario = $request->usuario;
         $servico = Servico::find($request->user_id);
+        if ($servico->$user_id == $usuario->user_id){
         $servico->nome = $request->nome;
         $servico->contato = $request->contato;
         $servico->tipo = $request->tipo;
@@ -79,6 +92,13 @@ class ServicoCotroller extends Controller
             "erro" => 'n',
             'carro' => $servico,
         ];
+        }
+        else{
+            $data = [
+            "erro" => 's',
+            
+        ];
+        }
 
         return response()->json($data,200);
 

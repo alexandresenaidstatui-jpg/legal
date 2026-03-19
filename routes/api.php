@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Testcontroller;
 use App\http\Controllers\UsuarioController;
-use App\Http\Controllers\ServicoCotroller;
+use App\Http\Controllers\ServicoController;
 use App\Http\Middleware\auth_api;
 
 
@@ -31,8 +31,9 @@ Route::middleware(auth_api::class)->group(function(){
     Route::put('/alterar_carro',[Testcontroller::class,'alterar_carro']);
     Route::post('/salva_carro',[Testcontroller::class,'salva_carro']);
     Route::delete('/deletar_carro',[Testcontroller::class,'deletar_carro']);
-    Route::post('/servico',[ServicoCotroller::class,'salva_servico']);
-    Route::put('/alterar_carro',[ServicoCotroller::class,'alterar_carro']);
+    Route::post('/servico',[ServicoController::class,'salva_servico']);
+    Route::put('/alterar_servico',[ServicoController::class,'alterar_servico']);
+    Route::get('/perfil',[UsuarioController::class,'mostra_perfil']);
 });
 
 
