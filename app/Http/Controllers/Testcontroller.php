@@ -7,199 +7,261 @@ use App\Models\CarroModel;
 
 class Testcontroller extends Controller
 {   
-    public function envia_teste(Request $request){
-
-    $data = [
-
-        'Palmeiras'=> '51',
-        'numero'=> $request->numero
-    ];
-
-     return response()->json($data,200);
-    }
-
-
-        public function soma(Request $request){
-
-    $data = [
-
-        'soma' => $request->numero + $request->numero_dois,
-    ];
-
-     return response()->json($data,200);
-    }
-
-    public function salva_carro (Request $request)
-    {
-        $request->validate ([
-
-    'modelo' => 'required',
-    'ano' => 'required',
-    'cor' => 'required',
-    'placa' => 'required',
-    'dono' => 'required',
-    'valor' => 'required',
-    'potencia' => 'required',
-    'fabricante' => 'required',
-    'tipo_gasolina' => 'required',
+    // ==================== ROTAS DE TESTE ====================
     
-    
-
-    ]);
-
-    try {
-        $carro = new CarroModel();
-        $carro->modelo = $request->modelo;
-        $carro->ano = $request->ano;
-        $carro->cor = $request->cor;
-        $carro->placa = $request->placa;
-        $carro->dono = $request->dono;
-        $carro->valor = $request->valor;
-        $carro->potencia = $request->potencia;
-        $carro->fabricante = $request->fabricante;
-        $carro->tipo_gasolina = $request->tipo_gasolina;
-        $carro->save();
-
-
-        $data = [
-            "erro" => 'n',
-            'carro' => $carro,
-        ];
-
-        return response()->json($data,200);
-
-    } catch (\Throwable $th) {
-        throw $th;
-    }
-
-
-    }
-    public function exibe_carro($id)
+    public function envia_teste(Request $request)
     {
-        $carro = CarroModel::find($id);
-
         $data = [
-            "erro" => 'n',
-            'carro' => $carro,
+            'Palmeiras' => '51',
+            'numero' => $request->numero
         ];
 
-        return response()->json($data,200);
-
-
+        return response()->json($data, 200);
     }
 
-
-    public function todos_carros(Request $request){
-
-
-        $carro = CarroModel::get()->all();
-
-        $data = [
-            "erro" => 'n',
-            'carro' => $carro,
-        ];
-
-        return response()->json($data,200);
-
-
-
-    }
-
-
-    public function visualizar_carro($id_carro){
-
-        $carro = CarroModel::find($id_carro);
-
-
-        return view('visualizar_carro') ->with('id_carro',$carro->id);
-
-
-    }
-
-    public function mostra_carro($id_carro){
-
-        $carro = CarroModel::find($id_carro);
-
-        return view('alterar_carro')->with('carro',$carro);
-
-    }
-
-    public function alterar_carro(Request $request){
-    {$request ->validate ([
-
-    'modelo' => 'required',
-    'ano' => 'required',
-    'cor' => 'required',
-    'placa' => 'required',
-    'dono' => 'required',
-    'valor' => 'required',
-    'potencia' => 'required',
-    'fabricante' => 'required',
-    'tipo_gasolina' => 'required',
-    'id_carro' => 'required'
-    
-
-    ]);
-
-    try {
-
-
-
-        $carro = CarroModel::find($request->id_carro);
-        $carro->modelo = $request->modelo;
-        $carro->ano = $request->ano;
-        $carro->cor = $request->cor;
-        $carro->placa = $request->placa;
-        $carro->dono = $request->dono;
-        $carro->valor = $request->valor;
-        $carro->potencia = $request->potencia;
-        $carro->fabricante = $request->fabricante;
-        $carro->tipo_gasolina = $request->tipo_gasolina;
-        $carro->save();
-
-
-        $data = [
-            "erro" => 'n',
-            'carro' => $carro,
-        ];
-
-        return response()->json($data,200);
-
-    } catch (\Throwable $th) {
-        //throw $th;
-    }
-
-    }
-
-    }
-
-public function deleta_carro ($id_carro)
+    public function soma(Request $request)
     {
-        $carro = CarroModel::find($id_carro);
+        $data = [
+            'soma' => $request->numero + $request->numero_dois,
+        ];
 
-        return view('deleta_carro')->with('carro', $carro);
-
-
+        return response()->json($data, 200);
     }
 
-
-    public function deletar_carro(Request $request){
-        $request->validate([
-        'id_carro' => 'required',
-        ]);
+    // ==================== DASHBOARD ====================
+    
+    public function dashboard()
+    {
+        $totalCarros = CarroModel::count();
+        $valorTotal = CarroModel::sum('valor');
+        $potenciaMedia = CarroModel::avg('potencia');
+        $fabricantes = CarroModel::distinct('fabricante')->count('fabricante');
         
-    try{
-        $carro = CarroModel::find($request->id_carro);
-        $carro->delete();
-        $data = [
-            'erro' => 'n',
-            'msg' => 'carro deletado'
+        $carrosPorFabricante = CarroModel::select('fabricante', \DB::raw('count(*) as total'))
+            ->groupBy('fabricante')
+            ->get();
+        
+        $carrosPorCombustivel = CarroModel::select('tipo_gasolina', \DB::raw('count(*) as total'))
+            ->groupBy('tipo_gasolina')
+            ->get();
+        
+        $ultimosCarros = CarroModel::orderBy('id', 'desc')->limit(5)->get();
+        
+        $dados = [
+            'total_carros' => $totalCarros,
+            'valor_total' => $valorTotal,
+            'potencia_media' => round($potenciaMedia, 0),
+            'total_fabricantes' => $fabricantes,
+            'carros_por_fabricante' => $carrosPorFabricante,
+            'carros_por_combustivel' => $carrosPorCombustivel,
+            'ultimos_carros' => $ultimosCarros
         ];
-        return response()->json($data,200);
-            } catch (\Throwable $th) {
-            throw $th;
+        
+        return response()->json([
+            'erro' => 'n',
+            'dashboard' => $dados
+        ], 200);
+    }
+
+    // ==================== CRUD DE CARROS ====================
+    
+    public function salva_carro(Request $request)
+    {
+        $request->validate([
+            'modelo' => 'required',
+            'ano' => 'required|integer',
+            'cor' => 'required',
+            'placa' => 'required|unique:carro,placa',
+            'dono' => 'required',
+            'valor' => 'required|numeric',
+            'potencia' => 'required|integer',
+            'fabricante' => 'required',
+            'tipo_gasolina' => 'required|integer',
+        ]);
+
+        try {
+            $carro = new CarroModel();
+            $carro->modelo = $request->modelo;
+            $carro->ano = $request->ano;
+            $carro->cor = $request->cor;
+            $carro->placa = $request->placa;
+            $carro->dono = $request->dono;
+            $carro->valor = $request->valor;
+            $carro->potencia = $request->potencia;
+            $carro->fabricante = $request->fabricante;
+            $carro->tipo_gasolina = $request->tipo_gasolina;
+            $carro->save();
+
+            return response()->json([
+                "erro" => 'n',
+                'mensagem' => 'Carro cadastrado com sucesso!',
+                'carro' => $carro,
+            ], 200);
+            
+        } catch (\Throwable $th) {
+            return response()->json([
+                "erro" => 's',
+                'mensagem' => 'Erro ao cadastrar carro: ' . $th->getMessage()
+            ], 500);
         }
     }
 
+    public function exibe_carro($id)
+    {
+        try {
+            $carro = CarroModel::find($id);
 
+            if (!$carro) {
+                return response()->json([
+                    "erro" => 's',
+                    'mensagem' => 'Carro não encontrado'
+                ], 404);
+            }
+
+            return response()->json([
+                "erro" => 'n',
+                'carro' => $carro,
+            ], 200);
+            
+        } catch (\Throwable $th) {
+            return response()->json([
+                "erro" => 's',
+                'mensagem' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function todos_carros(Request $request)
+    {
+        try {
+            $carros = CarroModel::orderBy('id', 'desc')->get();
+
+            return response()->json([
+                "erro" => 'n',
+                'carro' => $carros,
+            ], 200);
+            
+        } catch (\Throwable $th) {
+            return response()->json([
+                "erro" => 's',
+                'mensagem' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function alterar_carro(Request $request)
+    {
+        $request->validate([
+            'id_carro' => 'required|exists:carro,id',
+            'modelo' => 'required',
+            'ano' => 'required|integer',
+            'cor' => 'required',
+            'placa' => 'required',
+            'dono' => 'required',
+            'valor' => 'required|numeric',
+            'potencia' => 'required|integer',
+            'fabricante' => 'required',
+            'tipo_gasolina' => 'required|integer',
+        ]);
+
+        try {
+            $carro = CarroModel::find($request->id_carro);
+            
+            if (!$carro) {
+                return response()->json([
+                    "erro" => 's',
+                    'mensagem' => 'Carro não encontrado'
+                ], 404);
+            }
+
+            $carro->modelo = $request->modelo;
+            $carro->ano = $request->ano;
+            $carro->cor = $request->cor;
+            $carro->placa = $request->placa;
+            $carro->dono = $request->dono;
+            $carro->valor = $request->valor;
+            $carro->potencia = $request->potencia;
+            $carro->fabricante = $request->fabricante;
+            $carro->tipo_gasolina = $request->tipo_gasolina;
+            $carro->save();
+
+            return response()->json([
+                "erro" => 'n',
+                'mensagem' => 'Carro alterado com sucesso!',
+                'carro' => $carro,
+            ], 200);
+            
+        } catch (\Throwable $th) {
+            return response()->json([
+                "erro" => 's',
+                'mensagem' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deletar_carro(Request $request)
+    {
+        $request->validate([
+            'id_carro' => 'required|exists:carro,id',
+        ]);
+        
+        try {
+            $carro = CarroModel::find($request->id_carro);
+            
+            if (!$carro) {
+                return response()->json([
+                    "erro" => 's',
+                    'mensagem' => 'Carro não encontrado'
+                ], 404);
+            }
+            
+            $carro->delete();
+            
+            return response()->json([
+                'erro' => 'n',
+                'mensagem' => 'Carro deletado com sucesso!'
+            ], 200);
+            
+        } catch (\Throwable $th) {
+            return response()->json([
+                "erro" => 's',
+                'mensagem' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    // ==================== ROTAS PARA VIEWS (BLADE) ====================
+    
+    public function visualizar_carro($id_carro)
+    {
+        $carro = CarroModel::find($id_carro);
+
+        if (!$carro) {
+            return redirect()->back()->with('erro', 'Carro não encontrado');
+        }
+
+        return view('visualizar_carro')->with('id_carro', $carro->id);
+    }
+
+    public function mostra_carro($id_carro)
+    {
+        $carro = CarroModel::find($id_carro);
+
+        if (!$carro) {
+            return redirect()->back()->with('erro', 'Carro não encontrado');
+        }
+
+        return view('alterar_carro')->with('carro', $carro);
+    }
+
+    public function deleta_carro($id_carro)
+    {
+        $carro = CarroModel::find($id_carro);
+
+        if (!$carro) {
+            return redirect()->back()->with('erro', 'Carro não encontrado');
+        }
+
+        return view('deleta_carro')->with('carro', $carro);
+    }
 }

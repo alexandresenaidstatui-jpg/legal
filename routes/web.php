@@ -20,7 +20,7 @@ Route::get('/formulario', function () {
     return view('formulario');
 });
 
-Route::get('/cadastrar_usuario', function () {
+Route::post('/cadastrar_usuario', function () {
     return view('cadastrar_usuario');
 });
 
@@ -38,6 +38,9 @@ Route::get('/frota', function () {
     return view('frota');
 })->name('frota');
 
+Route::get('/dash', function () {
+    return view('dash');
+})->name('dash');
 
 
 Route::get('/servico', function () {
