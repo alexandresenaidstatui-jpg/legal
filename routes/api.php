@@ -10,6 +10,7 @@ use App\Http\Controllers\ServicoController;
 Route::post('/cadastrar_usuario', [UsuarioController::class, 'cadastra_usuario']);
 Route::get('/login', [UsuarioController::class, 'login']);
 Route::get('/perfil', [UsuarioController::class, 'mostra_perfil']);
+Route::get('/testa_email/{id_usuario}', [UsuarioController::class, 'testa_email']);
 
 // ==================== ROTAS DE TESTE ====================
 Route::get('/teste', [Testcontroller::class, 'envia_teste']);

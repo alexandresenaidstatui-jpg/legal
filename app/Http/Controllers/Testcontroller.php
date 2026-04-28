@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CarroModel;
+use Illuminate\Support\Facades\Cache;
+use App\Jobs\RenovaCache;
 
 class Testcontroller extends Controller
 {   
@@ -32,29 +34,40 @@ class Testcontroller extends Controller
     
     public function dashboard()
     {
-        $totalCarros = CarroModel::count();
-        $valorTotal = CarroModel::sum('valor');
-        $potenciaMedia = CarroModel::avg('potencia');
-        $fabricantes = CarroModel::distinct('fabricante')->count('fabricante');
         
-        $carrosPorFabricante = CarroModel::select('fabricante', \DB::raw('count(*) as total'))
+     // Limpa o cache para garantir dados atualizados
+       $data =  cache::rememberForever('dashboard', function() {
+
+       $data = [];
+
+        $data['totalCarros' ]= CarroModel::count();
+        $data['valorTotal']= CarroModel::sum('valor');
+        $data['potenciaMedia'] = CarroModel::avg('potencia');
+        $data['fabricantes'] = CarroModel::distinct('fabricante')->count('fabricante');
+        
+        $data['carrosPorFabricante'] = CarroModel::select('fabricante', \DB::raw('count(*) as total'))
             ->groupBy('fabricante')
             ->get();
         
-        $carrosPorCombustivel = CarroModel::select('tipo_gasolina', \DB::raw('count(*) as total'))
+        $data['carrosPorCombustivel'] = CarroModel::select('tipo_gasolina', \DB::raw('count(*) as total'))
             ->groupBy('tipo_gasolina')
             ->get();
         
-        $ultimosCarros = CarroModel::orderBy('id', 'desc')->limit(5)->get();
+        $data['ultimosCarros'] = CarroModel::orderBy('id', 'desc')->limit(5)->get();
+
+        return $data;
+
+        });
+       
         
         $dados = [
-            'total_carros' => $totalCarros,
-            'valor_total' => $valorTotal,
-            'potencia_media' => round($potenciaMedia, 0),
-            'total_fabricantes' => $fabricantes,
-            'carros_por_fabricante' => $carrosPorFabricante,
-            'carros_por_combustivel' => $carrosPorCombustivel,
-            'ultimos_carros' => $ultimosCarros
+            'total_carros' => $data['totalCarros'],
+            'valor_total' => $data['valorTotal'],
+            'potencia_media' => round($data['potenciaMedia'], 0),
+            'total_fabricantes' => $data['fabricantes'],
+            'carros_por_fabricante' => $data['carrosPorFabricante'],
+            'carros_por_combustivel' => $data['carrosPorCombustivel'],
+            'ultimos_carros' => $data['ultimosCarros']
         ];
         
         return response()->json([
@@ -91,6 +104,8 @@ class Testcontroller extends Controller
             $carro->fabricante = $request->fabricante;
             $carro->tipo_gasolina = $request->tipo_gasolina;
             $carro->save();
+
+            RenovaCache::dispatch();
 
             return response()->json([
                 "erro" => 'n',

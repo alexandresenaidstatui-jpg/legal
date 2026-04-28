@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\toukeuser;
 use Carbon\Carbon;
+use App\Jobs\EnviaEmail;
 
 class UsuarioController extends Controller
 {
@@ -144,3 +145,23 @@ class UsuarioController extends Controller
 
     }
 }
+
+    class UsuarioController extends Controller
+    {
+
+        public function testa_email($id_usuario){
+            $usuario = Usuario::find($id_usuario);
+            EnviaEmail::dispatch($usuario);
+
+            $data = [
+                'menssagem' => 'Email Enviado pra fila de processamento',
+                'usuario' => $usuario
+            ];
+            return response()->json($data);
+        }
+
+
+
+
+
+    }

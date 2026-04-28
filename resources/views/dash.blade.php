@@ -643,10 +643,11 @@
         }
         
         async function updateDashboard() {
-            showLoading(true);
+           
             try {
                 const response = await fetch('/api/dashboard');
                 const data = await response.json();
+                console.log(data);
                 if (data.erro === 'n') {
                     const d = data.dashboard;
                     $('#totalCarros').text(d.total_carros);
