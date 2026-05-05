@@ -9,16 +9,17 @@ use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Models\usuario;
+use App\Models\Usuario;
+
 
 class BemVindoMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $usuario;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(Usuario $usuario)
     {
         $this->usuario = $usuario;
     }
@@ -29,7 +30,7 @@ class BemVindoMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Bem Vindo ' . this->usuario->nome,
+            subject: 'Bem Vindo ' . $this->usuario->nome,
         );
     }
 
@@ -39,7 +40,7 @@ class BemVindoMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.bemvindo',
+            view: 'email.bemvindo',
             with: [
                 'usuario' => $this->usuario,
             ],

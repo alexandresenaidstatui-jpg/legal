@@ -5,18 +5,19 @@ namespace App\Jobs;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\BemVindoMail;
 use Illuminate\Support\Facades\Mail;
-use App\Models\usuario;
+use App\Models\Usuario;
+use App\Mail\BemVindoMail;
 
 class EnviaEmail implements ShouldQueue
 {
     use Queueable;
+    public $usuario;
 
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct(Usuario $usuario)
     {
         $this->usuario = $usuario;
     }

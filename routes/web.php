@@ -20,7 +20,7 @@ Route::get('/formulario', function () {
     return view('formulario');
 });
 
-Route::post('/cadastrar_usuario', function () {
+Route::get('/cadastrar_usuario', function () {
     return view('cadastrar_usuario');
 });
 
