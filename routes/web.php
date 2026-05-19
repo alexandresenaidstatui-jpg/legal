@@ -20,6 +20,10 @@ Route::get('/formulario', function () {
     return view('formulario');
 });
 
+Route::get('/digita_codigo', function () {
+    return view('digita_codigo');
+})->name('digita_codigo');
+
 Route::get('/cadastrar_usuario', function () {
     return view('cadastrar_usuario');
 });

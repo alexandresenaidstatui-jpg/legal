@@ -7,6 +7,7 @@ use App\Models\Usuario;
 use App\Models\toukeuser;
 use Carbon\Carbon;
 use App\Jobs\EnviaEmail;
+use App\Jobs\AutenticaJob;
 
 class UsuarioController extends Controller
 {
@@ -57,6 +58,16 @@ class UsuarioController extends Controller
      ->where('senha','=',md5($request->senha))->get()->first();
 
     if($usuario){
+        if($usuario->dupla_autentica == '1'){
+            AutenticaJob::dispatch($usuario);
+            $data = [
+                'erro'=> 's',
+                'msg'=> 'autentica ativa',
+            ];
+
+            return response()->json($data, 200);
+
+        }
         toukeuser::where('user_id',$usuario->id)->delete();
         $token = new toukeuser();
         $token->user_id = $usuario->id;
@@ -87,7 +98,7 @@ class UsuarioController extends Controller
     }
     }
 
-        public function mostra_perfil($id){
+    public function mostra_perfil($id){
 
         $usuario = Usuario::find($id);
 
@@ -96,7 +107,7 @@ class UsuarioController extends Controller
     }
 
     
-        public function testa_email($id_usuario){
+    public function testa_email($id_usuario){
             $usuario = Usuario::find($id_usuario);
             EnviaEmail::dispatch($usuario);
 
@@ -107,6 +118,47 @@ class UsuarioController extends Controller
             return response()->json($data);
         }
 
+    public function digita_codigo(Request $request){
+
+    return view('digita_codigo');
+
+    }
+
+
+    public function enviar_codigo(Request $request){
+   $request->validate([
+        'email' => 'required',
+        'codigo' => 'required',
+
+            ]);
+
+
+        $codigo = CodigoEmail::where('email','=', $request->email)
+        ->where('codigo','=', $request->codigo)
+        ->where('valido_ate','>', Carbon::now())->get()->first();
+        if($codigo){
+            $usuario = Usuario::where('email', $request->email)->get()->first();
+            toukeuser::where('user_id',$usuario->id)->delete();
+            $token = new toukeuser();
+            $token->user_id = $usuario->id;
+            $data = date('Y-m-d H:i:s');
+            $token->token = md5($usuario->id . $usuario->email . $data);
+            $agora = Carbon::now();
+            $agora->addDays(7);
+            $token->valido_ate = $agora;
+            $token->save();
+
+            CodigoEmail::where('email','=', $request->email)->delete();
+
+            $data = [
+                'erro' => 'n',
+                'msg' => 'Codigo Validado',
+                'token' => $token->token
+            ];
+   
+        }
+   
+    }
 
     public function alterar_usuario(Request $request){
     

@@ -373,27 +373,31 @@
                 senha: $("#senha").val(),
 
             },success: function(response){
-                console.log(response)
+                console.log(response);
                 if(response['erro'] =='n'){
-                    console.log(response)
-                    
+                    Swal.fire({
+                        icon:'success',
+                        title:'Bem-vindo',
+                        text:'Login efetuado com sucesso',
+                        showConfirmButton:false,
+                        timer:1500
+                    });
                     $.cookie('token',response['token'],{expire:7});
 
-                    
-
                     setTimeout(function(){
-                        window.location.href="/"; 
-                    },2000);
-                    
+                        window.location.href="/home"; 
+                    },1600);
                 }else{
+                    
+                }
 
-                    }
-                },
+                error: function (xhr) {
+                console.log("Erro ao consultar status Pix:", xhr.responseText);
+            }
 
-            error: function (xhr) {
 
                 
-            }
+            
         });
     });
 });
