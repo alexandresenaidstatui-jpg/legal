@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Testcontroller;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ServicoController;
+use App\Http\Controllers\StoreController;
 
 // ==================== ROTAS DE USUÁRIO ====================
 Route::post('/cadastrar_usuario', [UsuarioController::class, 'cadastra_usuario']);
@@ -24,6 +25,7 @@ Route::post('/todos_carros', [Testcontroller::class, 'todos_carros']);
 Route::post('/salva_carro', [Testcontroller::class, 'salva_carro']);
 Route::put('/alterar_carro', [Testcontroller::class, 'alterar_carro']);
 Route::delete('/deletar_carro', [Testcontroller::class, 'deletar_carro']);
+// Route moved to web routes for web form access (stores.create / stores.store)
 
 // ==================== ROTAS DE SERVIÇO ====================
 Route::post('/servico', [ServicoController::class, 'salva_servico']);

@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Testcontroller;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ServicoController;
+use App\Http\Controllers\StoreController;
+use App\Models\CarroModel;
+use App\Models\Store;
 
 Route::get('/', function () {
     return view('home');
@@ -19,6 +22,23 @@ Route::middleware('auth')->group(function () {
 Route::get('/formulario', function () {
     return view('formulario');
 });
+
+Route::get('/stores/create', [StoreController::class, 'create'])->name('stores.create');
+Route::get('/criar', function () {
+    return redirect()->route('stores.create');
+});
+Route::get('/create', function () {
+    return redirect()->route('stores.create');
+});
+Route::post('/stores', [StoreController::class, 'storeWeb'])->name('stores.store');
+
+Route::get('/sorteio', function () {
+    $carro = CarroModel::inRandomOrder()->first();
+    $loja = Store::inRandomOrder()->first();
+    $lucroLoja = $carro ? $carro->valor * 0.20 : 0;
+
+    return view('sorteio', compact('carro', 'loja', 'lucroLoja'));
+})->name('sorteio');
 
 Route::get('/digita_codigo', function () {
     return view('digita_codigo');
@@ -44,7 +64,7 @@ Route::get('/frota', function () {
 
 Route::get('/dash', function () {
     return view('dash');
-})->name('dash');
+})->name('dashboard');
 
 
 Route::get('/servico', function () {
